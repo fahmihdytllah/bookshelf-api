@@ -1,3 +1,8 @@
+/**
+ * Instagram : @fahmihdytllah
+ * Visit me  : linktr.ee/jagocode
+ */
+ 
 const fs = require('fs');
 const path = require('path');
 const { nanoid } = require('nanoid');

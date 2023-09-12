@@ -1,3 +1,8 @@
+/**
+ * Instagram : @fahmihdytllah
+ * Visit me  : linktr.ee/jagocode
+ */
+ 
 const db = require('../libs/db');
 
 module.exports.home = (request, h) => {
@@ -45,7 +50,7 @@ module.exports.addBooks = (request, h) => {
   if (addBookToDb) {
     return h.response({
       status: 'success',
-      message: 'Buku berhasil ditambahkan.',
+      message: 'Buku berhasil ditambahkan',
       data: {
         bookId: addBookToDb.id,
       },
@@ -96,7 +101,7 @@ module.exports.getBookById = (request, h) => {
   if (findBook) {
     return h.response({
       status: 'success',
-      data: findBook
+      data: { book: findBook }
     }).code(200);
   }
 
@@ -113,7 +118,7 @@ module.exports.editBookById = (request, h) => {
   const updatedAt = new Date().toISOString();
   const findBook = db.getBookById(id);
 
-  if (!findBook) {
+  if (findBook) {
     if (!name) {
       return h.response({
         status: 'fail',
@@ -150,7 +155,7 @@ module.exports.editBookById = (request, h) => {
 
   return h.response({
     status: 'fail',
-    message: 'Gagal memperbarui buku. ID tidak ditemukan',
+    message: 'Gagal memperbarui buku. Id tidak ditemukan',
   }).code(404);
 };
 
@@ -158,8 +163,8 @@ module.exports.deleteBookById = (request, h) => {
   const { id } = request.params;
 
   const findBook = db.getBookById(id);
-  if (!findBook) {
-    db.deletedBook(id);
+  if (findBook) {
+    db.deleteBookById(id);
     return h.response({
       status: 'success',
       message: 'Buku berhasil dihapus',

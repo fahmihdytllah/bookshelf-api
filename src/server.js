@@ -1,17 +1,22 @@
+/**
+ * Instagram : @fahmihdytllah
+ * Visit me  : linktr.ee/jagocode
+ */
+ 
 const Hapi = require('@hapi/hapi');
 const routes = require('./routes/books');
 
+const config = {
+  port: 9000,
+  host: 'localhost',
+  routes: {
+    cors: {
+      origin: ['*'],
+    }
+  }
+};
+
 const start = async () => {
-  const config = {
-    port: 9000,
-    host: 'localhost',
-    routes: {
-      cors: {
-        origin: ['*'],
-      },
-    },
-  };
-  
   const server = Hapi.server(config);
   server.route(routes);
   await server.start();
